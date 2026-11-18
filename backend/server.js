@@ -44,6 +44,18 @@ app.get("/api/peminjaman", async (req, res) => {
     }
 });
 
+app.post("/api/alat", async (req, res) => {
+    try{
+        const {id_kategori, nama_alat, kondisi, stok, lokasi} = req.body;
+        const query = `INSERT INTO alat (id_kategori, nama_alat, kondisi, stok, lokasi) VALUES ($1, $2, $3, $4, $5)`;
+        const result = await pool.query(query, [id_kategori, nama_alat, kondisi, stok, lokasi])
+        res.status(201).json(res.json(result.rows[0]));
+    }catch(err){
+        console.error(err.massage);
+        res.status(500).json({error: "Tidak dapat menambahkan alat"})
+    }
+});
+
 //menjalankan server di port 5000
 const PORT = 5000;
 app.listen(PORT, () => {
