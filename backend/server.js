@@ -21,7 +21,6 @@ app.get("/api/alat", async (req, res) => {
         res.status(500).json({error: "Terjadi Kesalahan"});
     }
 });
-
 //read kategori alat
 app.get("/api/kategori_alat", async (req, res) => {
     try{
@@ -32,7 +31,6 @@ app.get("/api/kategori_alat", async (req, res) => {
         res.status(500).json({error: "Terjadi Kesalahan"});
     }
 });
-
 //read peminjaman
 app.get("/api/peminjaman", async (req, res) => {
     try{
@@ -43,6 +41,7 @@ app.get("/api/peminjaman", async (req, res) => {
         res.status(500).json({error: "Terjadi Kesalahan"});
     }
 });
+
 
 //create alat
 app.post("/api/alat", async (req, res) => {
@@ -56,7 +55,6 @@ app.post("/api/alat", async (req, res) => {
         res.status(500).json({error: "Tidak dapat menambahkan alat"})
     }
 });
-
 //create katagori alat
 app.post("/api/kategori_alat", async (req, res) => {
     try{
@@ -69,7 +67,6 @@ app.post("/api/kategori_alat", async (req, res) => {
         res.status(500).json({error: "Tidak dapat menambahkan kategori alat"})
     }
 });
-
 //create peminjaman
 app.post("/api/peminjaman", async (req, res) => {
     try{
@@ -83,6 +80,8 @@ app.post("/api/peminjaman", async (req, res) => {
     }
 });
 
+
+//update alat
 //menjalankan server di port 5000
 const PORT = 5000;
 app.listen(PORT, () => {
