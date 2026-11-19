@@ -216,6 +216,18 @@ app.delete("/api/kategori_alat/:id", async (req, res) => {
     }
 });
 
+//delete peminjaman
+app.delete("/api/peminjaman/:id", async (req, res) => {
+    try{
+        const {id} = req.params;
+        const query = `DELETE FROM peminjaman WHERE id_peminjaman = $1 RETURNING *`;
+        const result = await pool.query(query, [id]);
+        res.status(201).json(result.rows[0]);
+    }catch(err){
+        console.error(err.message);
+        res.status(500).json({error: "Tidak dapat menghapus peminjaman"})
+    }
+});
 //menjalankan server di port 5000
 const PORT = 5000;
 app.listen(PORT, () => {
