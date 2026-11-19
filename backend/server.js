@@ -49,7 +49,7 @@ app.post("/api/alat", async (req, res) => {
         const {id_kategori, nama_alat, kondisi, stok, lokasi} = req.body;
         const query = `INSERT INTO alat (id_kategori, nama_alat, kondisi, stok, lokasi) VALUES ($1, $2, $3, $4, $5)`;
         const result = await pool.query(query, [id_kategori, nama_alat, kondisi, stok, lokasi])
-        res.status(201).json(res.json(result.rows[0]));
+        res.status(201).json(result.rows[0]);
     }catch(err){
         console.error(err.message);
         res.status(500).json({error: "Tidak dapat menambahkan alat"})
@@ -61,7 +61,7 @@ app.post("/api/kategori_alat", async (req, res) => {
         const {nama_kategori, deskripsi} = req.body;
         const query = `INSERT INTO kategori_alat (nama_kategori, deskripsi) VALUES ($1, $2)`;
         const result = await pool.query(query, [nama_kategori, deskripsi])
-        res.status(201).json(res.json(result.rows[0]));
+        res.status(201).json(result.rows[0]);
     }catch(err){
         console.error(err.message);
         res.status(500).json({error: "Tidak dapat menambahkan kategori alat"})
@@ -73,7 +73,7 @@ app.post("/api/peminjaman", async (req, res) => {
         const {id_alat, nama_peminjam, kelas, tanggal_pinjam, tanggal_kembali, jumlah, status} = req.body;
         const query = `INSERT INTO peminjaman (id_alat, nama_peminjam, kelas, tanggal_pinjam, tanggal_kembali, jumlah, status) VALUES ($1, $2, $3, $4, $5, $6, $7)`;
         const result = await pool.query(query, [id_alat, nama_peminjam, kelas, tanggal_pinjam, tanggal_kembali, jumlah, status])
-        res.status(201).json(res.json(result.rows[0]));
+        res.status(201).json(result.rows[0]);
     }catch(err){
         console.error(err.message);
         res.status(500).json({error: "Tidak dapat menambahkan peminjaman"})
