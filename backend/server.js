@@ -116,6 +116,37 @@ app.patch("/api/alat/:id", async (req, res) =>{
             message: "Data gagal di update"
         });
     }
+});
+
+//update kategori alat
+app.patch("/api/kategori_alat/:id", async (req, res) =>{
+    try{
+        const {id} = req.params;
+        const {nama_kategori, deskripsi} = req.body;
+        const query = `
+        UPDATE kategori_alat 
+        SET nama_kategori = COALESCE($2, nama_kategori),
+        deskripsi = COALESCE($3, deskripsi)
+        WHERE id_kategori = $1 RETURNING *
+        `;
+        
+        const result = await pool.query(query, [
+            id,
+            nama_kategori,
+            deskripsi
+        ]);
+
+        if(result.rows.length === 0) {
+            return res.status(404).json({error: "data tidak ditemukan. "})
+        }
+        res.status(201).json(result.rows[0]);
+    }catch(err){
+        console.error(err.message)
+        res.status(500).json({
+            success: false,
+            message: "Data gagal di update"
+        });
+    }
 })
 
 
