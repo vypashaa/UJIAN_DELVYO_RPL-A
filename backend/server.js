@@ -17,7 +17,7 @@ app.get("/api/alat", async (req, res) => {
         const query = await pool.query("SELECT * FROM alat");
         res.json(query.rows)
     }catch(err){
-        console.error(err.massage);
+        console.error(err.message);
         res.status(500).json({error: "Terjadi Kesalahan"});
     }
 });
@@ -27,7 +27,7 @@ app.get("/api/kategori_alat", async (req, res) => {
         const query = await pool.query("SELECT * FROM kategori_alat");
         res.json(query.rows)
     }catch(err){
-        console.error(err.massage);
+        console.error(err.message);
         res.status(500).json({error: "Terjadi Kesalahan"});
     }
 });
@@ -37,7 +37,7 @@ app.get("/api/peminjaman", async (req, res) => {
         const query = await pool.query("SELECT * FROM peminjaman");
         res.json(query.rows)
     }catch(err){
-        console.error(err.massage);
+        console.error(err.message);
         res.status(500).json({error: "Terjadi Kesalahan"});
     }
 });
@@ -51,7 +51,7 @@ app.post("/api/alat", async (req, res) => {
         const result = await pool.query(query, [id_kategori, nama_alat, kondisi, stok, lokasi])
         res.status(201).json(res.json(result.rows[0]));
     }catch(err){
-        console.error(err.massage);
+        console.error(err.message);
         res.status(500).json({error: "Tidak dapat menambahkan alat"})
     }
 });
@@ -63,7 +63,7 @@ app.post("/api/kategori_alat", async (req, res) => {
         const result = await pool.query(query, [nama_kategori, deskripsi])
         res.status(201).json(res.json(result.rows[0]));
     }catch(err){
-        console.error(err.massage);
+        console.error(err.message);
         res.status(500).json({error: "Tidak dapat menambahkan kategori alat"})
     }
 });
@@ -75,7 +75,7 @@ app.post("/api/peminjaman", async (req, res) => {
         const result = await pool.query(query, [id_alat, nama_peminjam, kelas, tanggal_pinjam, tanggal_kembali, jumlah, status])
         res.status(201).json(res.json(result.rows[0]));
     }catch(err){
-        console.error(err.massage);
+        console.error(err.message);
         res.status(500).json({error: "Tidak dapat menambahkan peminjaman"})
     }
 });
@@ -110,7 +110,7 @@ app.patch("/api/alat/:id", async (req, res) =>{
         }
         res.status(201).json(result.rows[0]);
     }catch(err){
-        console.error(err.massage)
+        console.error(err.message)
         res.status(500).json({
             success: false,
             message: "Data gagal di update"
