@@ -149,6 +149,47 @@ app.patch("/api/kategori_alat/:id", async (req, res) =>{
     }
 })
 
+//update peminjaman
+app.patch("/api/peminjaman/:id", async (req, res) =>{
+    try{
+        const {id} = req.params;
+        const {id_alat, nama_peminjam, kelas, tanggal_pinjam, tanggal_kembali, jumlah, status} = req.body;
+        const query = `
+        UPDATE peminjaman 
+        SET id_alat = COALESCE($2, id_alat),
+        nama_peminjam = COALESCE($3, nama_peminjam),
+        kelas = COALESCE($4, kelas),
+        tanggal_pinjam = COALESCE($5, tanggal_pinjam),
+        tanggal_kembali = COALESCE($6, tanggal_kembali),
+        jumlah = COALESCE($7, jumlah),
+        status = COALESCE($8, status)
+        WHERE id_peminjaman = $1 RETURNING *
+        `;
+        
+        const result = await pool.query(query, [
+            id,
+            id_alat,
+            nama_peminjam,
+            kelas,
+            tanggal_pinjam,
+            tanggal_kembali,
+            jumlah,
+            status
+        ]);
+
+        if(result.rows.length === 0) {
+            return res.status(404).json({error: "data tidak ditemukan. "})
+        }
+        res.status(201).json(result.rows[0]);
+    }catch(err){
+        console.error(err.message)
+        res.status(500).json({
+            success: false,
+            message: "Data gagal di update"
+        });
+    }
+})
+
 
 //menjalankan server di port 5000
 const PORT = 5000;
