@@ -190,6 +190,31 @@ app.patch("/api/peminjaman/:id", async (req, res) =>{
     }
 })
 
+//delete alat
+app.delete("/api/alat/:id", async (req, res) => {
+    try{
+        const {id} = req.params;
+        const query = `DELETE FROM alat WHERE id_alat = $1 RETURNING *`;
+        const result = await pool.query(query, [id]);
+        res.status(201).json(result.rows[0]);
+    }catch(err){
+        console.error(err.message);
+        res.status(500).json({error: "Tidak dapat menghapus alat"})
+    }
+});
+
+//delete kategori_alat
+app.delete("/api/kategori_alat/:id", async (req, res) => {
+    try{
+        const {id} = req.params;
+        const query = `DELETE FROM kategori_alat WHERE id_kategori = $1 RETURNING *`;
+        const result = await pool.query(query, [id]);
+        res.status(201).json(result.rows[0]);
+    }catch(err){
+        console.error(err.message);
+        res.status(500).json({error: "Tidak dapat menghapus kategori alat"})
+    }
+});
 
 //menjalankan server di port 5000
 const PORT = 5000;
