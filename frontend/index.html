@@ -5,9 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link href="./dist/output.css" rel="stylesheet">
-</head>
-<body>
+</head> 
+<body  class="bg-slate-50 text-slate-800">
+  <header class="sticky top-0 z-50 w-full bg-white/90 shadow-sm backdrop-blur">
+    <nav aria-label="Navigasi utama"
+      class="flex w-full flex-wrap items-center justify-between gap-4 px-6 py-5 sm:px-10 lg:px-16">
+      <a href="#home" class="flex items-center gap-3 text-3xl font-bold text-[#211C84]">
+        <span>Peminjaman Alat Praktik</span>
+      </a>
+
+      <ul class="flex flex-wrap gap-5 font-bold text-xl">
+        <li><a class="hover:text-[#4D55CC]" href="#alat">Alat</a></li>
+        <li><a class="hover:text-[#4D55CC]" href="#kategori">Kategori</a></li>
+        <li><a class="hover:text-[#4D55CC]" href="#peminjaman">Peminjaman</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="flex flex-col gap-16 py-8 px-8">
+
+    <section id="alat">
+        <h2 id="about-title" class="text-3xl font-bold text-[#211C84] md:text-4xl text-center mt-5">
+          Tambah dan Edit Alat
+        </h2>
+
+        <!-- wadah utama section alat (flex agar form kiri & tabel kanan sejajar) -->
+        <div class="mt-8 flex flex-col lg:flex-row gap-8 items-start">
+            
+            <!-- form bagian kiri (Card Utama) -->
+            <div class="w-full lg:w-80 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+
+                <!-- Header Card: Tombol Tab & Judul -->
+                <div class="border-b border-slate-200 pb-4 mb-4">
+                    <div class="flex gap-2 mb-3">
+                        <button type="button" id="btn-tab-tambah" class="flex-1 py-1.5 px-3 border-2 rounded-lg bg-blue-800 text-white font-semibold">➕ Tambah</button>
+                        <button type="button" id="btn-tab-edit" class="flex-1 py-1.5 px-3 border-2 rounded-lg hover:bg-blue-800 hover:text-white font-semibold">✏️ Edit</button>
+                    </div>
+                    <h3 id="judul-form-alat" class="text-xl font-bold text-center text-slate-800">Tambah Alat</h3>
+                </div>
+
+                <!-- Form Input berada DI DALAM card kiri -->
+                <form id="form-alat" class="flex flex-col gap-3">
+                   <div>
+                    <label for="id-kategori">ID Kategori:</label><br>
+                    <input type="text" name="id-kategori" id="id-kategori" class="border-2 rounded-md">
+                   </div>
+
+                   <div>
+                    <label for="nama-alat">Nama Alat:</label><br>
+                    <input type="text" name="nama-alat" id="nama-alat" class="border-2 rounded-md">
+                   </div>
+                   
+                   <div>
+                    <label for="kondisi">Kondisi:</label><br>
+                    <input type="text" name="kondisi" id="kondisi" class="border-2 rounded-md">
+                   </div>
+
+                   <div>
+                    <label for="stok">Stok:</label><br>
+                    <input type="text" name="stok" id="stok" class="border-2 rounded-md">
+                   </div>
+
+                   <div>
+                    <label for="lokasi">Lokasi:</label><br>
+                    <input type="text" name="lokasi" id="lokasi" class="border-2 rounded-md">
+                   </div><br>
+
+                   <button type="submit" class="border-2 hover:bg-blue-800 hover:text-white rounded-md">Tambah</button>
+                </form>
+
+            </div>
+
+            <!-- tabel bagian kanan (Wadah selanjutnya) -->
+            <div class="flex-1 w-full bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <table >
+                    <tr>
+                    <th>Id Kategori</th>
+                    <th>Nama Alat</th>
+                    <th>Kondisi</th>
+                    <th>Stok</th>
+                    <th>Lokasi</th>
+                </tr>
+                </table>
+            </div>
+        </div>
+    </section>
     
-    <script src="./js/app.js"></script>
+  </main>
 </body>
 </html>
