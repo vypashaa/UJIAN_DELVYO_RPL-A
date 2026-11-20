@@ -73,10 +73,10 @@ app.post("/api/peminjaman", async (req, res) => {
         const {id_alat, nama_peminjam, kelas, tanggal_pinjam, tanggal_kembali, jumlah, status} = req.body;
         const query = `INSERT INTO peminjaman (id_alat, nama_peminjam, kelas, tanggal_pinjam, tanggal_kembali, jumlah, status) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
         const result = await pool.query(query, [id_alat, nama_peminjam, kelas, tanggal_pinjam, tanggal_kembali, jumlah, status])
-        res.status(400).json(result.rows[0]);
+        res.status(201).json(result.rows[0]);
     }catch(err){
         console.error(err.message);
-        res.status(500).json({error: "Tidak dapat menambahkan peminjaman"})
+        res.status(400).json({error: err.message || "Tidak dapat menambahkan peminjaman"})
     }
 });
 
@@ -106,14 +106,13 @@ app.patch("/api/alat/:id", async (req, res) =>{
         ]);
 
         if(result.rows.length === 0) {
-            return res.status(404).json({error: "data tidak ditemukan. "})
+            return res.status(404).json({error: "data tidak ditemukan."})
         }
-        res.status(201).json(result.rows[0]);
+        res.status(200).json(result.rows[0]);
     }catch(err){
         console.error(err.message)
-        res.status(500).json({
-            success: false,
-            message: "Data gagal di update"
+        res.status(400).json({
+            error: err.message || "Data gagal di update"
         });
     }
 });
@@ -137,14 +136,13 @@ app.patch("/api/kategori_alat/:id", async (req, res) =>{
         ]);
 
         if(result.rows.length === 0) {
-            return res.status(404).json({error: "data tidak ditemukan. "})
+            return res.status(404).json({error: "data tidak ditemukan."})
         }
-        res.status(201).json(result.rows[0]);
+        res.status(200).json(result.rows[0]);
     }catch(err){
         console.error(err.message)
-        res.status(500).json({
-            success: false,
-            message: "Data gagal di update"
+        res.status(400).json({
+            error: err.message || "Data gagal di update"
         });
     }
 })
@@ -178,14 +176,13 @@ app.patch("/api/peminjaman/:id", async (req, res) =>{
         ]);
 
         if(result.rows.length === 0) {
-            return res.status(404).json({error: "data tidak ditemukan. "})
+            return res.status(404).json({error: "data tidak ditemukan."})
         }
-        res.status(201).json(result.rows[0]);
+        res.status(200).json(result.rows[0]);
     }catch(err){
         console.error(err.message)
-        res.status(500).json({
-            success: false,
-            message: "Data gagal di update"
+        res.status(400).json({
+            error: err.message || "Data gagal di update"
         });
     }
 })
@@ -196,10 +193,10 @@ app.delete("/api/alat/:id", async (req, res) => {
         const {id} = req.params;
         const query = `DELETE FROM alat WHERE id_alat = $1 RETURNING *`;
         const result = await pool.query(query, [id]);
-        res.status(201).json(result.rows[0]);
+        res.status(200).json(result.rows[0]);
     }catch(err){
         console.error(err.message);
-        res.status(500).json({error: "Tidak dapat menghapus alat"})
+        res.status(400).json({error: err.message || "Tidak dapat menghapus alat"})
     }
 });
 
@@ -209,10 +206,10 @@ app.delete("/api/kategori_alat/:id", async (req, res) => {
         const {id} = req.params;
         const query = `DELETE FROM kategori_alat WHERE id_kategori = $1 RETURNING *`;
         const result = await pool.query(query, [id]);
-        res.status(201).json(result.rows[0]);
+        res.status(200).json(result.rows[0]);
     }catch(err){
         console.error(err.message);
-        res.status(500).json({error: "Tidak dapat menghapus kategori alat"})
+        res.status(400).json({error: err.message || "Tidak dapat menghapus kategori alat"})
     }
 });
 
@@ -222,10 +219,10 @@ app.delete("/api/peminjaman/:id", async (req, res) => {
         const {id} = req.params;
         const query = `DELETE FROM peminjaman WHERE id_peminjaman = $1 RETURNING *`;
         const result = await pool.query(query, [id]);
-        res.status(201).json(result.rows[0]);
+        res.status(200).json(result.rows[0]);
     }catch(err){
         console.error(err.message);
-        res.status(500).json({error: "Tidak dapat menghapus peminjaman"})
+        res.status(400).json({error: err.message || "Tidak dapat menghapus peminjaman"})
     }
 });
 //menjalankan server di port 5000
