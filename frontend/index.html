@@ -24,7 +24,7 @@
 
   <main class="flex flex-col gap-16 py-8 px-8">
 
-    <section id="alat">
+    <section id="#alat">
         <h2 id="about-title" class="text-3xl font-bold text-[#211C84] md:text-4xl text-center mt-5">
           Tambah dan Edit Alat
         </h2>
@@ -78,19 +78,56 @@
 
             <!-- tabel bagian kanan (Wadah selanjutnya) -->
             <div class="flex-1 w-full bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                <table >
-                    <tr>
-                    <th>Id Kategori</th>
-                    <th>Nama Alat</th>
-                    <th>Kondisi</th>
-                    <th>Stok</th>
-                    <th>Lokasi</th>
-                </tr>
-                </table>
+            
+            </div>
+        </div>
+    </section><hr>
+
+    <section id="#kategori">
+        <h2 id="about-title" class="text-3xl font-bold text-[#211C84] md:text-4xl text-center mt-5">
+          Tambah dan Edit Kategori Alat
+        </h2>
+
+        <!-- wadah utama section alat (flex agar form kiri & tabel kanan sejajar) -->
+        <div class="mt-8 flex flex-col lg:flex-row gap-8 items-start">
+            
+            <!-- form bagian kiri (Card Utama) -->
+            <div class="w-full lg:w-80 bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+
+                <!-- Header Card: Tombol Tab & Judul -->
+                <div class="border-b border-slate-200 pb-4 mb-4">
+                    <div class="flex gap-2 mb-3">
+                        <button type="button" id="btn-tab-tambah" class="flex-1 py-1.5 px-3 border-2 rounded-lg bg-blue-800 text-white font-semibold">➕ Tambah</button>
+                        <button type="button" id="btn-tab-edit" class="flex-1 py-1.5 px-3 border-2 rounded-lg hover:bg-blue-800 hover:text-white font-semibold">✏️ Edit</button>
+                    </div>
+                    <h3 id="judul-form-alat" class="text-xl font-bold text-center text-slate-800">Tambah Kategori Alat</h3>
+                </div>
+
+                <!-- Form Input berada DI DALAM card kiri -->
+                <form id="form-alat" class="flex flex-col gap-3">
+                   <div>
+                    <label for="kategori">Nama Kategori:</label><br>
+                    <input type="text" name="kategori" id="kategori" class="border-2 rounded-md">
+                   </div>
+
+                   <div>
+                    <label for="deskripsi">Deskripsi:</label><br>
+                    <textarea id="deskripsi" name="deskripsi" rows="4" cols="30" class="border-2 rounded-md" placeholder="Tulis pesan panjang di sini..."></textarea>
+                   </div>
+                
+                   <button type="submit" class="border-2 hover:bg-blue-800 hover:text-white rounded-md">Tambah</button>
+                </form>
+
+            </div>
+
+            <!-- tabel bagian kanan (Wadah selanjutnya) -->
+            <div class="flex-1 w-full bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+        
             </div>
         </div>
     </section>
-    
+
+
   </main>
 </body>
 </html>
