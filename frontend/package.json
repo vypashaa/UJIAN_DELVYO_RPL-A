@@ -1,9 +1,11 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Frontend Sistem Informasi Peminjaman Alat Praktik Sekolah",
   "main": "index.js",
   "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
